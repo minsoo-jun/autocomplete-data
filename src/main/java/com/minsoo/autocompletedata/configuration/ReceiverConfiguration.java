@@ -1,6 +1,6 @@
 package com.minsoo.autocompletedata.configuration;
 
-import com.minsoo.autocompletedata.domain.Product;
+import com.minsoo.autocompletedata.domain.ProductPubSub;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,7 +24,7 @@ public class ReceiverConfiguration {
 
     private static final String SUBSCRIPTION_NAME = "product_sub";
 
-    private final ArrayList<Product> processedProductList = new ArrayList<>();
+    private final ArrayList<ProductPubSub> processedProductList = new ArrayList<>();
 
     @Bean
     public DirectChannel pubSubInputChannel() {
@@ -38,12 +38,12 @@ public class ReceiverConfiguration {
         PubSubInboundChannelAdapter adapter = new PubSubInboundChannelAdapter(pubSubTemplate, SUBSCRIPTION_NAME);
         adapter.setOutputChannel(inputChannel);
         adapter.setAckMode(AckMode.MANUAL);
-        adapter.setPayloadType(Product.class);
+        adapter.setPayloadType(ProductPubSub.class);
         return adapter;
     }
 
     @ServiceActivator(inputChannel = "pubSubInputChannel")
-    public void messageReceiver(Product payload,
+    public void messageReceiver(ProductPubSub payload,
                                 @Header(GcpPubSubHeaders.ORIGINAL_MESSAGE) BasicAcknowledgeablePubsubMessage message) {
         LOGGER.info("Message arrived! Payload: " + payload);
         this.processedProductList.add(payload);
@@ -52,7 +52,7 @@ public class ReceiverConfiguration {
 
     @Bean
     @Qualifier("ProcessedProductList")
-    public ArrayList<Product> processedPorductList() {
+    public ArrayList<ProductPubSub> processedPorductList() {
         return this.processedProductList;
     }
 }

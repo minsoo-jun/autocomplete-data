@@ -1,6 +1,6 @@
 package com.minsoo.autocompletedata;
 
-import com.minsoo.autocompletedata.domain.Product;
+import com.minsoo.autocompletedata.domain.ProductPubSub;
 import org.springframework.integration.annotation.MessagingGateway;
 
 /**
@@ -8,5 +8,5 @@ import org.springframework.integration.annotation.MessagingGateway;
  */
 @MessagingGateway(defaultRequestChannel = "pubSubOutputChannel")
 public interface PubSubProductGateway {
-    void sendProductToPubSub(Product product);
+    void sendProductToPubSub(ProductPubSub product);
 }

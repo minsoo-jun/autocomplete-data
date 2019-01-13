@@ -7,14 +7,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Product {
+public class ProductPubSub {
 
     private final int id_sku ;
     private final String n_product;
     private final int n_popurality;
 
     @JsonCreator
-    public Product(@JsonProperty("n_product") String n_product, @JsonProperty("id_sku") int id_sku, @JsonProperty("n_popurality") int n_popurality){
+    public ProductPubSub(@JsonProperty("n_product") String n_product, @JsonProperty("id_sku") int id_sku, @JsonProperty("n_popurality") int n_popurality){
         this.id_sku = id_sku;
         this.n_product = n_product;
         this.n_popurality = n_popurality;
@@ -31,7 +31,7 @@ public class Product {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Product product = (Product) o;
+        ProductPubSub product = (ProductPubSub) o;
         return this.id_sku == product.id_sku &&
                 Objects.equals(this.n_product, product.n_product);
     }
