@@ -1,8 +1,10 @@
 package com.minsoo.autocompletedata.configuration;
 
 import com.minsoo.autocompletedata.domain.ProductPubSub;
+import com.minsoo.autocompletedata.service.EsUpdateService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.gcp.pubsub.core.PubSubTemplate;
 import org.springframework.cloud.gcp.pubsub.integration.AckMode;
@@ -31,6 +33,9 @@ public class ReceiverConfiguration {
         return new DirectChannel();
     }
 
+    @Autowired
+    private EsUpdateService esUpdateService;
+
     @Bean
     public PubSubInboundChannelAdapter messageChannelAdapter(
             @Qualifier("pubSubInputChannel") MessageChannel inputChannel,
@@ -46,6 +51,10 @@ public class ReceiverConfiguration {
     public void messageReceiver(ProductPubSub payload,
                                 @Header(GcpPubSubHeaders.ORIGINAL_MESSAGE) BasicAcknowledgeablePubsubMessage message) {
         LOGGER.info("Message arrived! Payload: " + payload);
+        System.out.println(payload.getId_sku());
+        System.out.println(payload.getN_popurality());
+        System.out.println(payload.getN_product());
+        esUpdateService.searchDocuments(payload);
         this.processedProductList.add(payload);
         message.ack();
     }

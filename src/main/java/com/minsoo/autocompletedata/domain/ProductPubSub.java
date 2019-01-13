@@ -13,6 +13,18 @@ public class ProductPubSub {
     private final String n_product;
     private final int n_popurality;
 
+    public int getId_sku() {
+        return id_sku;
+    }
+
+    public String getN_product() {
+        return n_product;
+    }
+
+    public int getN_popurality() {
+        return n_popurality;
+    }
+
     @JsonCreator
     public ProductPubSub(@JsonProperty("n_product") String n_product, @JsonProperty("id_sku") int id_sku, @JsonProperty("n_popurality") int n_popurality){
         this.id_sku = id_sku;
