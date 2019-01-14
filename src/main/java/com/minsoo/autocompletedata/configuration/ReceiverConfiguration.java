@@ -54,7 +54,7 @@ public class ReceiverConfiguration {
         System.out.println(payload.getId_sku());
         System.out.println(payload.getN_popurality());
         System.out.println(payload.getN_product());
-        esUpdateService.searchDocuments(payload);
+        esUpdateService.syncDoucmet(payload);
         this.processedProductList.add(payload);
         message.ack();
     }

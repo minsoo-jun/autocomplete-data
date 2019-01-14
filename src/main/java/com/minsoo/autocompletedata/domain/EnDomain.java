@@ -18,6 +18,16 @@ public class EnDomain {
     private List<Category> category ;
     private String url;
     private String image;
+    private List<Refs> refs;
+
+    public List<Refs> getRefs() {
+        return refs;
+    }
+
+    public void setRefs(List<Refs> refs) {
+        this.refs = refs;
+    }
+
     // meta info
     private List<String> highlights;
 
@@ -85,6 +95,7 @@ public class EnDomain {
                 + ",category:" + category
                 + ",url:" + url
                 + ",image:" + image
+                + ",refs:" + refs
                 + "}";
     }
 }
