@@ -43,24 +43,14 @@ public class EsUpdateService {
             System.out.println(productPubSub.getId_sku() +" is not find");
         }else{
             EnDomain domain = oldData.get();
-        /*
-        System.out.println("###########################");
-        System.out.println(domain.getSku());
-        System.out.println(domain.getName());
-        System.out.println(domain.getPopurality());
-        System.out.println("###########################");
-        */
-            domain.setName(productPubSub.getN_product());
-            domain.setPopurality(productPubSub.getN_popurality());
-            List<Refs> refList = languageService.analyzeSentiment(domain.getName());
 
-        for(Refs ref: refList){
-            System.out.println("word=" + ref.getWord());
-        }
+            //List<Refs> refList = languageService.javaTokenizer(domain.getName());
+            List<Refs> refList = languageService.analyzeSentiment(domain.getName());
 
             domain.setRefs(refList);
 
             System.out.println(elasticService.save(domain));
+
         }
 
         sw.stop();
