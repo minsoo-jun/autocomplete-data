@@ -48,7 +48,7 @@ public class EsUpdateService {
             List<Refs> refList = languageService.analyzeSentiment(domain.getName());
 
             domain.setRefs(refList);
-
+            domain.setPopurality(productPubSub.getN_popurality());
             System.out.println(elasticService.save(domain));
 
         }
