@@ -51,4 +51,11 @@ public class WebController {
         esUpdateService.syncDoucmet(product);
         return "done";
     }
+
+    @GetMapping("/langApiTest")
+    public String langApiTest(@RequestParam("keyword") String keyword){
+        System.out.println("GOOGLE_APPLICATION_CREDENTIALS -> " + System.getenv("GOOGLE_APPLICATION_CREDENTIALS"));
+        System.out.println("JAVA_HOME -> " + System.getenv("JAVA_HOME"));
+        return esUpdateService.langApiTestCall(keyword);
+    }
 }

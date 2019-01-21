@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.minsoo</groupId>
 	<artifactId>autocomplete-data</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>data</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -60,6 +60,12 @@
 			<artifactId>google-cloud-language</artifactId>
 			<version>1.55.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-pubsub</artifactId>
+			<version>1.55.0</version>
+		</dependency>
+
 
 	</dependencies>
 

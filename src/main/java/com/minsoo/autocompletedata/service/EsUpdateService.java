@@ -56,6 +56,10 @@ public class EsUpdateService {
         sw.stop();
         System.out.println(sw.getTime() + "ms");
 
+    }
 
+    public String langApiTestCall(String keyword){
+        List<Refs> refList = languageService.analyzeSentiment(keyword);
+        return refList.toString();
     }
 }
