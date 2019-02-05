@@ -49,6 +49,7 @@ public class EsUpdateService {
 
             domain.setRefs(refList);
             domain.setPopurality(productPubSub.getN_popurality());
+            domain.setName(productPubSub.getN_product());
             System.out.println(elasticService.save(domain));
 
         }

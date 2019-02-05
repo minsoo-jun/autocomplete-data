@@ -22,16 +22,18 @@ public class LanguageService {
 
             AnalyzeSyntaxRequest syntaxRequest = AnalyzeSyntaxRequest.newBuilder().setDocument(doc).setEncodingType(EncodingType.UTF8).build();
             AnalyzeSyntaxResponse syntaxResponse = language.analyzeSyntax(syntaxRequest);
+
             List<Token> tokens = syntaxResponse.getTokensList();
+
             Refs ref ;
             for (Token token:tokens){
                 if(token.getDependencyEdge().getLabel() != DependencyEdge.Label.P && token.getText().getContent().length() > 1) {
-                    /*
+
                     System.out.println("######################");
                     System.out.println("token.getText()=>" + token.getText().getContent());
                     System.out.println("token.getLemma()=>" + token.getLemma());
                     System.out.println("token.getLabel()=>" + token.getDependencyEdge().getLabel());
-                    */
+
                     ref = new Refs();
                     ref.setWord(token.getText().getContent());
                     wordList.add(ref);
