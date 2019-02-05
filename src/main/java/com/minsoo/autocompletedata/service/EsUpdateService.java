@@ -45,7 +45,7 @@ public class EsUpdateService {
             EnDomain domain = oldData.get();
 
             //List<Refs> refList = languageService.javaTokenizer(domain.getName());
-            List<Refs> refList = languageService.analyzeSentiment(domain.getName());
+            List<Refs> refList = languageService.analyzeSentiment(productPubSub.getN_product());
 
             domain.setRefs(refList);
             domain.setPopurality(productPubSub.getN_popurality());
